@@ -1335,7 +1335,7 @@ onMounted(() => {
                             </div>
                         </div>
                         <h3 class="text-lg font-bold mb-3 text-gray-900">
-                            AI Landscape Audit
+                            Strategic Foundation
                         </h3>
                         <div
                             class="h-24 mb-4 flex items-center justify-center bg-gray-50 rounded-lg"
@@ -1345,7 +1345,7 @@ onMounted(() => {
                                     500+
                                 </div>
                                 <div class="text-xs text-gray-500">
-                                    Queries Analyzed
+                                    AI Queries Mapped
                                 </div>
                             </div>
                         </div>
@@ -1358,10 +1358,10 @@ onMounted(() => {
                                     <p
                                         class="text-sm font-medium text-gray-900"
                                     >
-                                        Competitive Intelligence
+                                        Strategy Workshop
                                     </p>
                                     <p class="text-xs text-gray-500">
-                                        Map competitor AI visibility
+                                        Align goals & messaging
                                     </p>
                                 </div>
                             </div>
@@ -1373,10 +1373,40 @@ onMounted(() => {
                                     <p
                                         class="text-sm font-medium text-gray-900"
                                     >
-                                        Query Mapping
+                                        Competitive Benchmarking
                                     </p>
                                     <p class="text-xs text-gray-500">
-                                        Identify 500+ high-value queries
+                                        Identify AI visibility gaps
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                                ></div>
+                                <div>
+                                    <p
+                                        class="text-sm font-medium text-gray-900"
+                                    >
+                                        First PR Campaign Launch
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        Ideation & creative build
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                                ></div>
+                                <div>
+                                    <p
+                                        class="text-sm font-medium text-gray-900"
+                                    >
+                                        Content Roadmap
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        2 listicles + 2 on-site articles
                                     </p>
                                 </div>
                             </div>
@@ -1432,7 +1462,7 @@ onMounted(() => {
                             </div>
                         </div>
                         <h3 class="text-lg font-bold mb-3 text-gray-900">
-                            Entity Architecture
+                            Momentum Building
                         </h3>
                         <div
                             class="h-24 mb-4 flex items-center justify-center bg-gray-50 rounded-lg"
@@ -1455,10 +1485,10 @@ onMounted(() => {
                                     <p
                                         class="text-sm font-medium text-gray-900"
                                     >
-                                        Knowledge Graph Build
+                                        PR Campaign Execution
                                     </p>
                                     <p class="text-xs text-gray-500">
-                                        Structure entity relationships
+                                        Ongoing outreach & coverage
                                     </p>
                                 </div>
                             </div>
@@ -1470,10 +1500,40 @@ onMounted(() => {
                                     <p
                                         class="text-sm font-medium text-gray-900"
                                     >
-                                        Content Optimization
+                                        First YouTube Video
                                     </p>
                                     <p class="text-xs text-gray-500">
-                                        AI-friendly content structure
+                                        Authority content goes live
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                                ></div>
+                                <div>
+                                    <p
+                                        class="text-sm font-medium text-gray-900"
+                                    >
+                                        Community Mentions
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        Reddit & forum presence
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                                ></div>
+                                <div>
+                                    <p
+                                        class="text-sm font-medium text-gray-900"
+                                    >
+                                        Content Production
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        4 listicles + 3 articles
                                     </p>
                                 </div>
                             </div>
@@ -1529,17 +1589,17 @@ onMounted(() => {
                             </div>
                         </div>
                         <h3 class="text-lg font-bold mb-3 text-gray-900">
-                            Authority Signals
+                            Authority Acceleration
                         </h3>
                         <div
                             class="h-24 mb-4 flex items-center justify-center bg-gray-50 rounded-lg"
                         >
                             <div class="text-center">
                                 <div class="text-2xl font-bold text-blue-600">
-                                    +35%
+                                    20+
                                 </div>
                                 <div class="text-xs text-gray-500">
-                                    Visibility Gain
+                                    Media Placements
                                 </div>
                             </div>
                         </div>
@@ -1552,10 +1612,10 @@ onMounted(() => {
                                     <p
                                         class="text-sm font-medium text-gray-900"
                                     >
-                                        Digital PR Campaign
+                                        PR Campaign Continues
                                     </p>
                                     <p class="text-xs text-gray-500">
-                                        Launch targeted media outreach
+                                        Sustained media visibility
                                     </p>
                                 </div>
                             </div>
@@ -1567,10 +1627,40 @@ onMounted(() => {
                                     <p
                                         class="text-sm font-medium text-gray-900"
                                     >
-                                        Strategic Listicles
+                                        Community Growth
                                     </p>
                                     <p class="text-xs text-gray-500">
-                                        Placement in comparison content
+                                        Regular forum participation
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                                ></div>
+                                <div>
+                                    <p
+                                        class="text-sm font-medium text-gray-900"
+                                    >
+                                        Listicle Placements
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        4 "Best of" inclusions
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                                ></div>
+                                <div>
+                                    <p
+                                        class="text-sm font-medium text-gray-900"
+                                    >
+                                        On-Site Content
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        3 deep-dive articles
                                     </p>
                                 </div>
                             </div>
@@ -1629,17 +1719,17 @@ onMounted(() => {
                             </div>
                         </div>
                         <h3 class="text-lg font-bold mb-3 text-gray-900">
-                            Rapid Scaling
+                            Scale & Amplify
                         </h3>
                         <div
                             class="h-24 mb-4 flex items-center justify-center bg-gray-50 rounded-lg"
                         >
                             <div class="text-center">
                                 <div class="text-2xl font-bold text-blue-600">
-                                    +16%
+                                    Campaign #2
                                 </div>
                                 <div class="text-xs text-gray-500">
-                                    Visibility Gain
+                                    Major PR Launch
                                 </div>
                             </div>
                         </div>
@@ -1652,10 +1742,10 @@ onMounted(() => {
                                     <p
                                         class="text-sm font-medium text-gray-900"
                                     >
-                                        Multi-Platform Push
+                                        Second PR Campaign
                                     </p>
                                     <p class="text-xs text-gray-500">
-                                        Expand to all major AI systems
+                                        New major media push
                                     </p>
                                 </div>
                             </div>
@@ -1667,10 +1757,40 @@ onMounted(() => {
                                     <p
                                         class="text-sm font-medium text-gray-900"
                                     >
-                                        Community Presence
+                                        Second YouTube Video
                                     </p>
                                     <p class="text-xs text-gray-500">
-                                        Active in 50+ relevant forums
+                                        "Best in Category" style
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                                ></div>
+                                <div>
+                                    <p
+                                        class="text-sm font-medium text-gray-900"
+                                    >
+                                        Community Expansion
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        Maintained presence
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                                ></div>
+                                <div>
+                                    <p
+                                        class="text-sm font-medium text-gray-900"
+                                    >
+                                        Content Volume
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        4 listicle placements
                                     </p>
                                 </div>
                             </div>
@@ -1726,17 +1846,17 @@ onMounted(() => {
                             </div>
                         </div>
                         <h3 class="text-lg font-bold mb-3 text-gray-900">
-                            Fine-Tuning
+                            Optimization Sprint
                         </h3>
                         <div
                             class="h-24 mb-4 flex items-center justify-center bg-gray-50 rounded-lg"
                         >
                             <div class="text-center">
                                 <div class="text-2xl font-bold text-blue-600">
-                                    +13%
+                                    81%
                                 </div>
                                 <div class="text-xs text-gray-500">
-                                    Visibility Gain
+                                    Visibility Score
                                 </div>
                             </div>
                         </div>
@@ -1749,10 +1869,10 @@ onMounted(() => {
                                     <p
                                         class="text-sm font-medium text-gray-900"
                                     >
-                                        Performance Analysis
+                                        PR Campaign Execution
                                     </p>
                                     <p class="text-xs text-gray-500">
-                                        Data-driven optimization
+                                        Ongoing media coverage
                                     </p>
                                 </div>
                             </div>
@@ -1764,10 +1884,40 @@ onMounted(() => {
                                     <p
                                         class="text-sm font-medium text-gray-900"
                                     >
-                                        Gap Filling
+                                        Community Signals
                                     </p>
                                     <p class="text-xs text-gray-500">
-                                        Target missed opportunities
+                                        Trusted recommendations
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                                ></div>
+                                <div>
+                                    <p
+                                        class="text-sm font-medium text-gray-900"
+                                    >
+                                        Listicle Coverage
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        4 strategic placements
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                                ></div>
+                                <div>
+                                    <p
+                                        class="text-sm font-medium text-gray-900"
+                                    >
+                                        Performance Review
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        Data-driven refinements
                                     </p>
                                 </div>
                             </div>
@@ -1823,7 +1973,7 @@ onMounted(() => {
                             </div>
                         </div>
                         <h3 class="text-lg font-bold mb-3 text-gray-900">
-                            Market Leadership
+                            Market Dominance
                         </h3>
                         <div
                             class="h-24 mb-4 flex items-center justify-center bg-gray-50 rounded-lg"
@@ -1833,7 +1983,7 @@ onMounted(() => {
                                     94%
                                 </div>
                                 <div class="text-xs text-gray-500">
-                                    Final Score
+                                    AI Visibility
                                 </div>
                             </div>
                         </div>
@@ -1846,10 +1996,10 @@ onMounted(() => {
                                     <p
                                         class="text-sm font-medium text-gray-900"
                                     >
-                                        Category Authority
+                                        Third YouTube Video
                                     </p>
                                     <p class="text-xs text-gray-500">
-                                        Recognized as industry leader
+                                        Multimedia authority
                                     </p>
                                 </div>
                             </div>
@@ -1861,10 +2011,40 @@ onMounted(() => {
                                     <p
                                         class="text-sm font-medium text-gray-900"
                                     >
-                                        Continuous Growth
+                                        PR Campaign Finale
                                     </p>
                                     <p class="text-xs text-gray-500">
-                                        Self-reinforcing visibility
+                                        Final outreach & follow-up
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                                ></div>
+                                <div>
+                                    <p
+                                        class="text-sm font-medium text-gray-900"
+                                    >
+                                        Category Leadership
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        Default AI recommendation
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 mr-2.5 flex-shrink-0"
+                                ></div>
+                                <div>
+                                    <p
+                                        class="text-sm font-medium text-gray-900"
+                                    >
+                                        Evergreen Authority
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        Long-term content value
                                     </p>
                                 </div>
                             </div>
