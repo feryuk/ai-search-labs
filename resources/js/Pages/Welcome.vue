@@ -218,53 +218,53 @@ const handleSubmitContact = () => {
 // Watch for hoveredMonth changes and simulate mouse hover on chart
 watch(hoveredMonth, (newValue) => {
     if (!chartInstance.value || !chartInstance.value.canvas) return;
-    
+
     nextTick(() => {
         if (!chartInstance.value) return;
-        
+
         try {
             const canvas = chartInstance.value.canvas;
             const rect = canvas.getBoundingClientRect();
-            
+
             if (newValue !== null && newValue >= 1 && newValue <= 6) {
                 // Get the data point position
                 const meta = chartInstance.value.getDatasetMeta(0);
                 const point = meta.data[newValue];
-                
+
                 if (point) {
                     // Get the point's position
                     const pointPos = point.getCenterPoint();
-                    
+
                     // Create and dispatch a mousemove event at the point's position
-                    const evt = new MouseEvent('mousemove', {
+                    const evt = new MouseEvent("mousemove", {
                         clientX: rect.left + pointPos.x,
                         clientY: rect.top + pointPos.y,
                         bubbles: true,
                         cancelable: true,
-                        view: window
+                        view: window,
                     });
-                    
+
                     canvas.dispatchEvent(evt);
                 }
             } else {
                 // Clear hover by dispatching mouseout event
-                const mouseOutEvent = new MouseEvent('mouseout', {
+                const mouseOutEvent = new MouseEvent("mouseout", {
                     bubbles: true,
                     cancelable: true,
-                    view: window
+                    view: window,
                 });
-                
+
                 canvas.dispatchEvent(mouseOutEvent);
-                
+
                 // Also move mouse away to ensure tooltip is hidden
-                const mouseMoveEvent = new MouseEvent('mousemove', {
+                const mouseMoveEvent = new MouseEvent("mousemove", {
                     clientX: 0,
                     clientY: 0,
                     bubbles: true,
                     cancelable: true,
-                    view: window
+                    view: window,
                 });
-                
+
                 canvas.dispatchEvent(mouseMoveEvent);
             }
         } catch (error) {
@@ -295,11 +295,11 @@ onMounted(() => {
     }, 500);
 
     // Add click outside listener for dropdowns
-    document.addEventListener('click', (e) => {
+    document.addEventListener("click", (e) => {
         // Check if click is outside all dropdown areas
-        const isDropdownButton = e.target.closest('[data-dropdown-toggle]');
-        const isDropdownContent = e.target.closest('[data-dropdown-content]');
-        
+        const isDropdownButton = e.target.closest("[data-dropdown-toggle]");
+        const isDropdownContent = e.target.closest("[data-dropdown-content]");
+
         if (!isDropdownButton && !isDropdownContent) {
             activeDropdown.value = null;
         }
@@ -393,8 +393,18 @@ onMounted(() => {
                                 class="flex items-center text-gray-900 font-medium hover:text-blue-600 transition"
                             >
                                 Services
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                <svg
+                                    class="w-4 h-4 ml-1"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"
+                                    />
                                 </svg>
                             </button>
                             <div
@@ -404,76 +414,177 @@ onMounted(() => {
                                 class="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-100 p-4 z-50"
                             >
                                 <!-- 6-Month Plan Header -->
-                                <div class="pb-3 mb-3 border-b-2 border-gray-100">
+                                <div
+                                    class="pb-3 mb-3 border-b-2 border-gray-100"
+                                >
                                     <div class="flex items-center gap-2 mb-2">
-                                        <div class="px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-xs font-bold uppercase tracking-wide">
+                                        <div
+                                            class="px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-xs font-bold uppercase tracking-wide"
+                                        >
                                             6-MONTH PLAN
                                         </div>
-                                        <span class="text-xs text-gray-500">All Included</span>
+                                        <span class="text-xs text-gray-500"
+                                            >All Included</span
+                                        >
                                     </div>
-                                    <p class="text-sm text-gray-600">All services below are included in our comprehensive optimization plan</p>
+                                    <p class="text-sm text-gray-600">
+                                        All services below are included in our
+                                        comprehensive optimization plan
+                                    </p>
                                 </div>
-                                
+
                                 <!-- Services Container with Border -->
                                 <div class="space-y-1">
-                                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wide px-2 mb-2">Included Services:</div>
-                                    
-                                    <a href="#onsite" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition">
+                                    <div
+                                        class="text-xs font-semibold text-gray-500 uppercase tracking-wide px-2 mb-2"
+                                    >
+                                        Included Services:
+                                    </div>
+
+                                    <a
+                                        href="#onsite"
+                                        class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition"
+                                    >
                                         <div class="flex items-start gap-2">
-                                            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            <svg
+                                                class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"
+                                                />
                                             </svg>
                                             <div>
-                                                <div class="font-medium">On-Site Optimisation</div>
-                                                <div class="text-xs text-gray-500">AI-friendly website structure</div>
+                                                <div class="font-medium">
+                                                    On-Site Optimisation
+                                                </div>
+                                                <div
+                                                    class="text-xs text-gray-500"
+                                                >
+                                                    AI-friendly website
+                                                    structure
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
-                                    
-                                    <a href="#content" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition">
+
+                                    <a
+                                        href="#content"
+                                        class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition"
+                                    >
                                         <div class="flex items-start gap-2">
-                                            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            <svg
+                                                class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"
+                                                />
                                             </svg>
                                             <div>
-                                                <div class="font-medium">Content Creation</div>
-                                                <div class="text-xs text-gray-500">Authority content that AI trusts</div>
+                                                <div class="font-medium">
+                                                    Content Creation
+                                                </div>
+                                                <div
+                                                    class="text-xs text-gray-500"
+                                                >
+                                                    Authority content that AI
+                                                    trusts
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
-                                    
-                                    <a href="#pr" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition">
+
+                                    <a
+                                        href="#pr"
+                                        class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition"
+                                    >
                                         <div class="flex items-start gap-2">
-                                            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            <svg
+                                                class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"
+                                                />
                                             </svg>
                                             <div>
-                                                <div class="font-medium">Digital PR</div>
-                                                <div class="text-xs text-gray-500">High-authority media coverage</div>
+                                                <div class="font-medium">
+                                                    Digital PR
+                                                </div>
+                                                <div
+                                                    class="text-xs text-gray-500"
+                                                >
+                                                    High-authority media
+                                                    coverage
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
-                                    
-                                    <a href="#listicles" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition">
+
+                                    <a
+                                        href="#listicles"
+                                        class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition"
+                                    >
                                         <div class="flex items-start gap-2">
-                                            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            <svg
+                                                class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"
+                                                />
                                             </svg>
                                             <div>
-                                                <div class="font-medium">Strategic Listicles</div>
-                                                <div class="text-xs text-gray-500">Top rankings in comparisons</div>
+                                                <div class="font-medium">
+                                                    Strategic Listicles
+                                                </div>
+                                                <div
+                                                    class="text-xs text-gray-500"
+                                                >
+                                                    Top rankings in comparisons
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
-                                    
-                                    <a href="#community" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition">
+
+                                    <a
+                                        href="#community"
+                                        class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition"
+                                    >
                                         <div class="flex items-start gap-2">
-                                            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            <svg
+                                                class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"
+                                                />
                                             </svg>
                                             <div>
-                                                <div class="font-medium">Community Signals</div>
-                                                <div class="text-xs text-gray-500">Organic recommendations</div>
+                                                <div class="font-medium">
+                                                    Community Signals
+                                                </div>
+                                                <div
+                                                    class="text-xs text-gray-500"
+                                                >
+                                                    Organic recommendations
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -489,8 +600,18 @@ onMounted(() => {
                                 class="flex items-center text-gray-900 font-medium hover:text-blue-600 transition"
                             >
                                 Solutions
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                <svg
+                                    class="w-4 h-4 ml-1"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"
+                                    />
                                 </svg>
                             </button>
                             <div
@@ -499,17 +620,34 @@ onMounted(() => {
                                 data-dropdown-content="solutions"
                                 class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50"
                             >
-                                <a href="#enterprise" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                                <a
+                                    href="#enterprise"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                                >
                                     <div class="font-medium">Enterprise</div>
-                                    <div class="text-xs text-gray-500">Full-scale AI optimization</div>
+                                    <div class="text-xs text-gray-500">
+                                        Full-scale AI optimization
+                                    </div>
                                 </a>
-                                <a href="#startup" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                                <a
+                                    href="#startup"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                                >
                                     <div class="font-medium">Startups</div>
-                                    <div class="text-xs text-gray-500">Build AI presence from day one</div>
+                                    <div class="text-xs text-gray-500">
+                                        Build AI presence from day one
+                                    </div>
                                 </a>
-                                <a href="#reseller" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
-                                    <div class="font-medium">White-label Reseller</div>
-                                    <div class="text-xs text-gray-500">Partner with us</div>
+                                <a
+                                    href="#reseller"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                                >
+                                    <div class="font-medium">
+                                        White-label Reseller
+                                    </div>
+                                    <div class="text-xs text-gray-500">
+                                        Partner with us
+                                    </div>
                                 </a>
                             </div>
                         </div>
@@ -616,7 +754,7 @@ onMounted(() => {
                                 target="_blank"
                                 class="px-6 py-3 bg-white border-2 border-gray-200 text-black rounded-full font-medium hover:bg-gray-50 transition inline-block"
                             >
-                                Request Service
+                                Book a meeting
                             </a>
                         </div>
                     </div>
@@ -2272,9 +2410,11 @@ onMounted(() => {
                         Example of Expected Outcomes
                     </h3>
                     <p class="text-sm italic text-gray-500 mb-6">
-                        All metrics, timelines, and growth projections shown are illustrative examples only. 
-                        Actual outcomes will vary depending on industry, competition, and implementation. These figures do not constitute 
-                        a guarantee or promise of specific results for any engagement.
+                        All metrics, timelines, and growth projections shown are
+                        illustrative examples only. Actual outcomes will vary
+                        depending on industry, competition, and implementation.
+                        These figures do not constitute a guarantee or promise
+                        of specific results for any engagement.
                     </p>
                     <div class="grid md:grid-cols-4 gap-6">
                         <div class="text-center">
@@ -2315,49 +2455,103 @@ onMounted(() => {
         </section>
 
         <!-- CTA Section -->
-        <section id="contact" class="py-24 px-6 bg-gradient-to-b from-white to-gray-50 border-t border-gray-100">
+        <section
+            id="contact"
+            class="py-24 px-6 bg-gradient-to-b from-white to-gray-50 border-t border-gray-100"
+        >
             <div class="max-w-7xl mx-auto">
-                <div class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+                <div
+                    class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden"
+                >
                     <div class="grid md:grid-cols-2 items-stretch">
                         <!-- Left Content -->
                         <div class="p-12 lg:p-16 flex flex-col justify-center">
-                            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-4 w-fit">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            <div
+                                class="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-4 w-fit"
+                            >
+                                <svg
+                                    class="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                                    />
                                 </svg>
                                 <span>Start Your AI Journey</span>
                             </div>
-                            
-                            <h2 class="text-4xl lg:text-5xl font-bold mb-4 text-gray-900">
+
+                            <h2
+                                class="text-4xl lg:text-5xl font-bold mb-4 text-gray-900"
+                            >
                                 Your Competition is Already
-                                <span class="block text-blue-600 mt-2">Optimizing for AI</span>
+                                <span class="block text-blue-600 mt-2"
+                                    >Optimizing for AI</span
+                                >
                             </h2>
-                            
+
                             <p class="text-lg text-gray-600 mb-8">
-                                Don't let competitors dominate AI recommendations. Start your 6-month transformation to become the #1 AI-recommended brand in your industry.
+                                Don't let competitors dominate AI
+                                recommendations. Start your 6-month
+                                transformation to become the #1 AI-recommended
+                                brand in your industry.
                             </p>
-                            
+
                             <div class="space-y-4 mb-8">
                                 <div class="flex items-center gap-3">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    <svg
+                                        class="w-5 h-5 text-green-500 flex-shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"
+                                        />
                                     </svg>
-                                    <span class="text-gray-700">89% average visibility increase</span>
+                                    <span class="text-gray-700"
+                                        >89% average visibility increase</span
+                                    >
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    <svg
+                                        class="w-5 h-5 text-green-500 flex-shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"
+                                        />
                                     </svg>
-                                    <span class="text-gray-700">Results visible within 30 days</span>
+                                    <span class="text-gray-700"
+                                        >Results visible within 30 days</span
+                                    >
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    <svg
+                                        class="w-5 h-5 text-green-500 flex-shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"
+                                        />
                                     </svg>
-                                    <span class="text-gray-700">Full-service implementation</span>
+                                    <span class="text-gray-700"
+                                        >Full-service implementation</span
+                                    >
                                 </div>
                             </div>
-                            
+
                             <div class="flex flex-col sm:flex-row gap-4">
                                 <a
                                     href="https://calendly.com/aisearchlabs/consultation"
@@ -2375,54 +2569,116 @@ onMounted(() => {
                                 </a>
                             </div>
                         </div>
-                        
+
                         <!-- Right Visual -->
-                        <div class="relative bg-gradient-to-br from-blue-50 to-indigo-100 p-12 lg:p-16 flex items-center justify-center">
+                        <div
+                            class="relative bg-gradient-to-br from-blue-50 to-indigo-100 p-12 lg:p-16 flex items-center justify-center"
+                        >
                             <div class="relative">
                                 <!-- Floating metric cards -->
-                                <div class="absolute -top-8 -left-8 bg-white rounded-lg shadow-lg p-4 transform rotate-3 hover:rotate-0 transition-transform">
-                                    <div class="text-3xl font-bold text-blue-600">94%</div>
-                                    <div class="text-xs text-gray-500">AI Visibility Score</div>
+                                <div
+                                    class="absolute -top-8 -left-8 bg-white rounded-lg shadow-lg p-4 transform rotate-3 hover:rotate-0 transition-transform"
+                                >
+                                    <div
+                                        class="text-3xl font-bold text-blue-600"
+                                    >
+                                        94%
+                                    </div>
+                                    <div class="text-xs text-gray-500">
+                                        AI Visibility Score
+                                    </div>
                                 </div>
-                                
-                                <div class="absolute -bottom-8 -right-8 bg-white rounded-lg shadow-lg p-4 transform -rotate-3 hover:rotate-0 transition-transform">
-                                    <div class="text-3xl font-bold text-green-600">3x</div>
-                                    <div class="text-xs text-gray-500">Lead Growth</div>
+
+                                <div
+                                    class="absolute -bottom-8 -right-8 bg-white rounded-lg shadow-lg p-4 transform -rotate-3 hover:rotate-0 transition-transform"
+                                >
+                                    <div
+                                        class="text-3xl font-bold text-green-600"
+                                    >
+                                        3x
+                                    </div>
+                                    <div class="text-xs text-gray-500">
+                                        Lead Growth
+                                    </div>
                                 </div>
-                                
+
                                 <!-- Central graphic -->
-                                <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                                <div
+                                    class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
+                                >
                                     <div class="space-y-4">
                                         <div class="flex items-center gap-3">
-                                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                                <SparklesIcon class="w-6 h-6 text-blue-600" />
+                                            <div
+                                                class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center"
+                                            >
+                                                <SparklesIcon
+                                                    class="w-6 h-6 text-blue-600"
+                                                />
                                             </div>
                                             <div>
-                                                <div class="font-semibold text-gray-900">AI Search Labs</div>
-                                                <div class="text-xs text-gray-500">Your Success Partner</div>
+                                                <div
+                                                    class="font-semibold text-gray-900"
+                                                >
+                                                    AI Search Labs
+                                                </div>
+                                                <div
+                                                    class="text-xs text-gray-500"
+                                                >
+                                                    Your Success Partner
+                                                </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="h-px bg-gray-200"></div>
-                                        
+
                                         <div class="space-y-3">
-                                            <div class="flex items-center justify-between">
-                                                <span class="text-sm text-gray-600">ChatGPT Ranking</span>
-                                                <span class="text-sm font-semibold text-green-600">#1</span>
+                                            <div
+                                                class="flex items-center justify-between"
+                                            >
+                                                <span
+                                                    class="text-sm text-gray-600"
+                                                    >ChatGPT Ranking</span
+                                                >
+                                                <span
+                                                    class="text-sm font-semibold text-green-600"
+                                                    >#1</span
+                                                >
                                             </div>
-                                            <div class="flex items-center justify-between">
-                                                <span class="text-sm text-gray-600">Claude Position</span>
-                                                <span class="text-sm font-semibold text-green-600">Top 3</span>
+                                            <div
+                                                class="flex items-center justify-between"
+                                            >
+                                                <span
+                                                    class="text-sm text-gray-600"
+                                                    >Claude Position</span
+                                                >
+                                                <span
+                                                    class="text-sm font-semibold text-green-600"
+                                                    >Top 3</span
+                                                >
                                             </div>
-                                            <div class="flex items-center justify-between">
-                                                <span class="text-sm text-gray-600">Perplexity Score</span>
-                                                <span class="text-sm font-semibold text-green-600">95%</span>
+                                            <div
+                                                class="flex items-center justify-between"
+                                            >
+                                                <span
+                                                    class="text-sm text-gray-600"
+                                                    >Perplexity Score</span
+                                                >
+                                                <span
+                                                    class="text-sm font-semibold text-green-600"
+                                                    >95%</span
+                                                >
                                             </div>
                                         </div>
-                                        
-                                        <div class="pt-4 border-t border-gray-100">
-                                            <div class="flex items-center gap-2 text-xs text-gray-500">
-                                                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+
+                                        <div
+                                            class="pt-4 border-t border-gray-100"
+                                        >
+                                            <div
+                                                class="flex items-center gap-2 text-xs text-gray-500"
+                                            >
+                                                <div
+                                                    class="w-2 h-2 bg-green-500 rounded-full animate-pulse"
+                                                ></div>
                                                 <span>Live client results</span>
                                             </div>
                                         </div>
@@ -2446,28 +2702,59 @@ onMounted(() => {
                             <div class="flex items-center space-x-2 mb-4">
                                 <SparklesIcon class="h-8 w-8 text-blue-500" />
                                 <div>
-                                    <div class="font-bold text-white text-lg">AI Search Labs Ltd</div>
-                                    <div class="text-xs text-gray-400">AI Search Optimisation Agency</div>
+                                    <div class="font-bold text-white text-lg">
+                                        AI Search Labs Ltd
+                                    </div>
+                                    <div class="text-xs text-gray-400">
+                                        AI Search Optimisation Agency
+                                    </div>
                                 </div>
                             </div>
                             <p class="text-sm text-gray-400 mb-6 max-w-md">
-                                Pioneering Answer Engine Optimization to ensure your brand is the 
-                                preferred choice when AI systems make recommendations.
+                                Pioneering Answer Engine Optimization to ensure
+                                your brand is the preferred choice when AI
+                                systems make recommendations.
                             </p>
                             <div class="space-y-2 text-sm">
                                 <div class="flex items-center">
-                                    <svg class="h-4 w-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    <svg
+                                        class="h-4 w-4 mr-2 text-gray-500"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                        />
                                     </svg>
-                                    <a href="mailto:hello@aisearchlabs.com" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="mailto:hello@aisearchlabs.com"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         hello@aisearchlabs.com
                                     </a>
                                 </div>
                                 <div class="flex items-center">
-                                    <svg class="h-4 w-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    <svg
+                                        class="h-4 w-4 mr-2 text-gray-500"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                                        />
                                     </svg>
-                                    <a href="tel:+442012345678" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="tel:+442012345678"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         +44 20 1234 5678
                                     </a>
                                 </div>
@@ -2476,30 +2763,47 @@ onMounted(() => {
 
                         <!-- Services -->
                         <div>
-                            <h3 class="font-semibold text-white mb-4">Services</h3>
+                            <h3 class="font-semibold text-white mb-4">
+                                Services
+                            </h3>
                             <ul class="space-y-2 text-sm">
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="#"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         On-Site Optimisation
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="#"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         Content Creation
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="#"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         Digital PR
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="#"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         Strategic Listicles
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="#"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         Community Signals
                                     </a>
                                 </li>
@@ -2508,35 +2812,55 @@ onMounted(() => {
 
                         <!-- Company -->
                         <div>
-                            <h3 class="font-semibold text-white mb-4">Company</h3>
+                            <h3 class="font-semibold text-white mb-4">
+                                Company
+                            </h3>
                             <ul class="space-y-2 text-sm">
                                 <li>
-                                    <a href="#about" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="#about"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         About Us
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#process" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="#process"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         Our Process
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#reseller" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="#reseller"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         White-label Reseller
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#contact" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="#contact"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         Contact
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/privacy" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="/privacy"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         Privacy Policy
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/terms" class="text-gray-400 hover:text-white transition">
+                                    <a
+                                        href="/terms"
+                                        class="text-gray-400 hover:text-white transition"
+                                    >
                                         Terms & Conditions
                                     </a>
                                 </li>
@@ -2549,27 +2873,54 @@ onMounted(() => {
             <!-- Legal Footer -->
             <div class="border-t border-gray-800 py-6 px-6">
                 <div class="max-w-7xl mx-auto">
-                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                        <div class="text-xs text-gray-500 text-center md:text-left">
-                            <p>&copy; 2025 AI Search Labs Ltd. All rights reserved.</p>
-                            <p class="mt-1">
-                                Company number 16719803 registered in England and Wales.
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+                    >
+                        <div
+                            class="text-xs text-gray-500 text-center md:text-left"
+                        >
+                            <p>
+                                &copy; 2025 AI Search Labs Ltd. All rights
+                                reserved.
                             </p>
                             <p class="mt-1">
-                                Registered office: Windrush House, Windrush Park Road, Witney, England, OX29 7DX
+                                Company number 16719803 registered in England
+                                and Wales.
+                            </p>
+                            <p class="mt-1">
+                                Registered office: Windrush House, Windrush Park
+                                Road, Witney, England, OX29 7DX
                             </p>
                         </div>
                         <div class="flex space-x-6">
                             <!-- LinkedIn -->
-                            <a href="#" class="text-gray-500 hover:text-white transition">
-                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            <a
+                                href="#"
+                                class="text-gray-500 hover:text-white transition"
+                            >
+                                <svg
+                                    class="h-5 w-5"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                    />
                                 </svg>
                             </a>
                             <!-- Twitter/X -->
-                            <a href="#" class="text-gray-500 hover:text-white transition">
-                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            <a
+                                href="#"
+                                class="text-gray-500 hover:text-white transition"
+                            >
+                                <svg
+                                    class="h-5 w-5"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                                    />
                                 </svg>
                             </a>
                         </div>
