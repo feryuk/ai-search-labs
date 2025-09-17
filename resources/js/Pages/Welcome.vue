@@ -1307,10 +1307,10 @@ onMounted(() => {
                 <div class="mb-12 bg-gray-50 rounded-2xl p-8">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-bold">
-                            Expected Visibility Growth
+                            Example Visibility Growth
                         </h3>
                         <span class="text-sm text-gray-500"
-                            >From 12% to 94% in 6 months</span
+                            >From 12% to 94% AI visibility in 6 months</span
                         >
                     </div>
                     <div class="h-48">
@@ -2126,7 +2126,7 @@ onMounted(() => {
                 <!-- Key Metrics -->
                 <div class="mt-12 bg-gray-50 rounded-2xl p-8">
                     <h3 class="text-xl font-bold mb-6 text-gray-900">
-                        Expected Outcomes
+                        Example of Expected Outcomes
                     </h3>
                     <div class="grid md:grid-cols-4 gap-6">
                         <div class="text-center">
