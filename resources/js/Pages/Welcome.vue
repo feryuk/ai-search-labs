@@ -2572,12 +2572,96 @@ onMounted(() => {
 
                         <!-- Right Visual -->
                         <div
-                            class="relative bg-gradient-to-br from-blue-50 to-indigo-100 p-12 lg:p-16 flex items-center justify-center"
+                            class="relative bg-gradient-to-br from-blue-50 to-indigo-100 p-12 lg:p-16 flex items-center justify-center overflow-hidden"
                         >
                             <div class="relative">
+                                <!-- Circling AI Platform Logos -->
+                                <div class="absolute inset-0 pointer-events-none">
+                                    <!-- Orbit Container - Wider orbit to avoid overlap -->
+                                    <div class="relative w-[500px] h-[500px] -left-[150px] -top-[150px]">
+                                        <!-- ChatGPT -->
+                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                            <div class="animate-orbit-slow">
+                                                <div class="w-10 h-10 bg-white/90 backdrop-blur rounded-full shadow-md flex items-center justify-center -translate-x-56">
+                                                    <img 
+                                                        src="https://www.google.com/s2/favicons?domain=openai.com&sz=32" 
+                                                        alt="ChatGPT"
+                                                        class="w-6 h-6"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Claude -->
+                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                            <div class="animate-orbit-medium">
+                                                <div class="w-10 h-10 bg-white/90 backdrop-blur rounded-full shadow-md flex items-center justify-center translate-x-48 translate-y-32">
+                                                    <img 
+                                                        src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=32" 
+                                                        alt="Claude"
+                                                        class="w-6 h-6"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Perplexity -->
+                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                            <div class="animate-orbit-fast">
+                                                <div class="w-10 h-10 bg-white/90 backdrop-blur rounded-full shadow-md flex items-center justify-center -translate-y-52">
+                                                    <img 
+                                                        src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=32" 
+                                                        alt="Perplexity"
+                                                        class="w-6 h-6"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Gemini -->
+                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                            <div class="animate-orbit-slower">
+                                                <div class="w-10 h-10 bg-white/90 backdrop-blur rounded-full shadow-md flex items-center justify-center translate-x-32 -translate-y-48">
+                                                    <img 
+                                                        src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=32" 
+                                                        alt="Gemini"
+                                                        class="w-6 h-6"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Copilot -->
+                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                            <div class="animate-orbit-reverse">
+                                                <div class="w-10 h-10 bg-white/90 backdrop-blur rounded-full shadow-md flex items-center justify-center translate-y-56">
+                                                    <img 
+                                                        src="https://www.google.com/s2/favicons?domain=copilot.microsoft.com&sz=32" 
+                                                        alt="Copilot"
+                                                        class="w-6 h-6"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- DeepSeek -->
+                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                            <div class="animate-orbit-extra-slow">
+                                                <div class="w-10 h-10 bg-white/90 backdrop-blur rounded-full shadow-md flex items-center justify-center -translate-x-40 translate-y-40">
+                                                    <img 
+                                                        src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=32" 
+                                                        alt="DeepSeek"
+                                                        class="w-6 h-6"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <!-- Floating metric cards -->
                                 <div
-                                    class="absolute -top-8 -left-8 bg-white rounded-lg shadow-lg p-4 transform rotate-3 hover:rotate-0 transition-transform"
+                                    class="absolute -top-8 -left-8 bg-white rounded-lg shadow-lg p-4 transform rotate-3 hover:rotate-0 transition-transform z-10"
                                 >
                                     <div
                                         class="text-3xl font-bold text-blue-600"
@@ -2590,7 +2674,7 @@ onMounted(() => {
                                 </div>
 
                                 <div
-                                    class="absolute -bottom-8 -right-8 bg-white rounded-lg shadow-lg p-4 transform -rotate-3 hover:rotate-0 transition-transform"
+                                    class="absolute -bottom-8 -right-8 bg-white rounded-lg shadow-lg p-4 transform -rotate-3 hover:rotate-0 transition-transform z-10"
                                 >
                                     <div
                                         class="text-3xl font-bold text-green-600"
@@ -2764,47 +2848,48 @@ onMounted(() => {
                         <!-- Services -->
                         <div>
                             <h3 class="font-semibold text-white mb-4">
-                                Services
+                                6-Month Plan Services
                             </h3>
+                            <div class="text-xs text-gray-500 mb-3">All included in our plan:</div>
                             <ul class="space-y-2 text-sm">
                                 <li>
                                     <a
                                         href="#"
-                                        class="text-gray-400 hover:text-white transition"
+                                        class="text-gray-400 hover:text-white transition flex items-center gap-1"
                                     >
-                                        On-Site Optimisation
+                                        <span class="text-green-500 text-xs">✓</span> On-Site Optimisation
                                     </a>
                                 </li>
                                 <li>
                                     <a
                                         href="#"
-                                        class="text-gray-400 hover:text-white transition"
+                                        class="text-gray-400 hover:text-white transition flex items-center gap-1"
                                     >
-                                        Content Creation
+                                        <span class="text-green-500 text-xs">✓</span> Content Creation
                                     </a>
                                 </li>
                                 <li>
                                     <a
                                         href="#"
-                                        class="text-gray-400 hover:text-white transition"
+                                        class="text-gray-400 hover:text-white transition flex items-center gap-1"
                                     >
-                                        Digital PR
+                                        <span class="text-green-500 text-xs">✓</span> Digital PR
                                     </a>
                                 </li>
                                 <li>
                                     <a
                                         href="#"
-                                        class="text-gray-400 hover:text-white transition"
+                                        class="text-gray-400 hover:text-white transition flex items-center gap-1"
                                     >
-                                        Strategic Listicles
+                                        <span class="text-green-500 text-xs">✓</span> Strategic Listicles
                                     </a>
                                 </li>
                                 <li>
                                     <a
                                         href="#"
-                                        class="text-gray-400 hover:text-white transition"
+                                        class="text-gray-400 hover:text-white transition flex items-center gap-1"
                                     >
-                                        Community Signals
+                                        <span class="text-green-500 text-xs">✓</span> Community Signals
                                     </a>
                                 </li>
                             </ul>
@@ -3000,5 +3085,48 @@ onMounted(() => {
     50% {
         transform: scale(1.05);
     }
+}
+
+/* Orbit animations for AI logos */
+@keyframes orbit {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes orbit-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.animate-orbit-slow {
+    animation: orbit 30s linear infinite;
+}
+
+.animate-orbit-medium {
+    animation: orbit 25s linear infinite;
+}
+
+.animate-orbit-fast {
+    animation: orbit 20s linear infinite;
+}
+
+.animate-orbit-slower {
+    animation: orbit 35s linear infinite;
+}
+
+.animate-orbit-reverse {
+    animation: orbit-reverse 28s linear infinite;
+}
+
+.animate-orbit-extra-slow {
+    animation: orbit 40s linear infinite;
 }
 </style>
