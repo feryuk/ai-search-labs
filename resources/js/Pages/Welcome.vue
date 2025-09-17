@@ -36,6 +36,9 @@ const contactForm = ref({
     phone: ''
 });
 
+// Show visibility score after chat completes
+const showVisibilityScore = ref(false);
+
 // AI platforms for animated banner
 const aiPlatforms = [
     { name: 'ChatGPT', domain: 'openai.com' },
@@ -78,7 +81,7 @@ const typeMessage = async (message, isUser = false) => {
     
     for (let i = 0; i <= message.length; i++) {
         currentTyping.value = message.substring(0, i);
-        await new Promise(resolve => setTimeout(resolve, isUser ? 30 : 15));
+        await new Promise(resolve => setTimeout(resolve, isUser ? 30 : 8));
     }
     
     isTyping.value = false;
@@ -126,6 +129,10 @@ onMounted(() => {
         // Show sources after message completes
         setTimeout(() => {
             showSources.value = true;
+            // Show visibility score after sources appear
+            setTimeout(() => {
+                showVisibilityScore.value = true;
+            }, 500);
         }, 500);
     }, 1500);
 });
@@ -191,7 +198,11 @@ onMounted(() => {
 
         <!-- Hero Section -->
         <section class="relative pt-20 pb-20 px-8">
-            <div class="max-w-7xl mx-auto">
+            <!-- Grid background -->
+            <div class="absolute inset-0 bg-gray-50">
+                <div class="absolute inset-0" style="background-image: linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px); background-size: 50px 50px;"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto">
                 <div class="grid lg:grid-cols-2 gap-16 items-start">
                     <div class="pt-8">
                         <h1 class="text-6xl lg:text-7xl font-bold mb-8 leading-tight">
@@ -199,8 +210,9 @@ onMounted(() => {
                             mentioned by <span class="text-blue-600">AI<br />discovery</span>
                         </h1>
                         <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-xl">
-                            Master Answer Engine Optimization (AEO) to ensure your brand appears in 
-                            AI-generated responses across ChatGPT, Claude, Gemini, and Perplexity.
+                            We help brands get mentioned in AI-generated responses through 
+                            on-site optimization, content creation, digital PR, listicles, 
+                            and community brand signals.
                         </p>
                         <div class="flex items-center gap-4">
                             <button class="inline-flex items-center px-6 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition">
@@ -291,15 +303,22 @@ onMounted(() => {
                             </div>
                             
                             <!-- Bottom Stats -->
-                            <div class="bg-white border-t border-gray-200 px-4 py-3">
-                                <div class="flex items-center justify-between text-xs mb-3">
-                                    <div class="flex items-center gap-4">
-                                        <span class="text-gray-500">Visibility Score:</span>
-                                        <span class="font-bold text-green-600">89% for "HubSpot"</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
-                                        <span class="text-gray-500">#1 mentioned brand</span>
+                            <div class="bg-white border-t border-gray-200 px-4 py-3 transition-all duration-500"
+                                 :class="showVisibilityScore ? 'bg-gradient-to-r from-green-50 to-blue-50 shadow-lg' : ''">
+                                <div class="overflow-hidden transition-all duration-700"
+                                     :class="showVisibilityScore ? 'max-h-20 opacity-100 scale-100' : 'max-h-0 opacity-0 scale-95'">
+                                    <div class="flex items-center justify-between text-xs mb-3 animate-pulse-once">
+                                        <div class="flex items-center gap-4">
+                                            <span class="text-gray-500">Visibility Score:</span>
+                                            <span class="font-bold text-green-600 text-base transition-all duration-500"
+                                                  :class="showVisibilityScore ? 'scale-110' : 'scale-100'">
+                                                89% for "HubSpot"
+                                            </span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-2 h-2 bg-blue-600 rounded-full animate-ping"></div>
+                                            <span class="text-gray-500">#1 mentioned brand</span>
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -395,19 +414,37 @@ onMounted(() => {
             </div>
         </section>
 
-        <!-- Logos Section -->
+        <!-- AI Engines Section -->
         <section class="py-16 px-8 bg-gray-50">
             <div class="max-w-7xl mx-auto">
                 <p class="text-center text-sm text-gray-500 uppercase tracking-wider font-semibold mb-8">
-                    Trusted by brands achieving 80%+ LLM visibility
+                    We help you be visible in AI search engines
                 </p>
-                <div class="flex items-center justify-center space-x-16 opacity-60 grayscale">
-                    <span class="text-2xl font-light text-gray-400">revolut</span>
-                    <span class="text-2xl font-light text-gray-400">stripe</span>
-                    <span class="text-2xl font-light text-gray-400">tesla</span>
-                    <span class="text-2xl font-light text-gray-400">nyt</span>
-                    <span class="text-2xl font-light text-gray-400">guardian</span>
-                    <span class="text-2xl font-light text-gray-400">forbes</span>
+                <div class="flex items-center justify-center space-x-12 flex-wrap gap-y-4">
+                    <div class="flex items-center gap-2">
+                        <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=32" alt="ChatGPT" class="w-6 h-6">
+                        <span class="text-lg font-medium text-gray-700">ChatGPT</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=32" alt="Gemini" class="w-6 h-6">
+                        <span class="text-lg font-medium text-gray-700">Gemini</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=32" alt="Claude" class="w-6 h-6">
+                        <span class="text-lg font-medium text-gray-700">Claude</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=32" alt="Perplexity" class="w-6 h-6">
+                        <span class="text-lg font-medium text-gray-700">Perplexity</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img src="https://www.google.com/s2/favicons?domain=copilot.microsoft.com&sz=32" alt="Copilot" class="w-6 h-6">
+                        <span class="text-lg font-medium text-gray-700">Copilot</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img src="https://www.google.com/s2/favicons?domain=meta.ai&sz=32" alt="Meta AI" class="w-6 h-6">
+                        <span class="text-lg font-medium text-gray-700">Meta AI</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -417,10 +454,10 @@ onMounted(() => {
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-16">
                     <h2 class="text-5xl font-bold mb-6">
-                        The AEO Framework: <span class="text-blue-600">5 Steps to LLM Visibility</span>
+                        Our AEO Framework: <span class="text-blue-600">How We Get You Mentioned</span>
                     </h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Our proprietary Answer Engine Optimization methodology ensures consistent AI mentions
+                        Our proven 5-step methodology transforms your brand into AI's preferred recommendation
                     </p>
                 </div>
 
@@ -431,10 +468,10 @@ onMounted(() => {
                             <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white font-bold">1</span>
                             </div>
-                            <h3 class="text-base font-bold">Map</h3>
+                            <h3 class="text-base font-bold">Research</h3>
                         </div>
                         <p class="text-gray-600 text-sm leading-relaxed">
-                            Identify high-value AI conversations and query patterns in your industry.
+                            Identify high-value conversations your audience has with AI tools.
                         </p>
                     </div>
 
@@ -443,10 +480,10 @@ onMounted(() => {
                             <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white font-bold">2</span>
                             </div>
-                            <h3 class="text-base font-bold">Structure</h3>
+                            <h3 class="text-base font-bold">Create Content</h3>
                         </div>
                         <p class="text-gray-600 text-sm leading-relaxed">
-                            Build entity-focused content with comprehensive schema markup.
+                            Build content clusters on your website specifically designed to be cited by AI.
                         </p>
                     </div>
 
@@ -455,10 +492,10 @@ onMounted(() => {
                             <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white font-bold">3</span>
                             </div>
-                            <h3 class="text-base font-bold">Validate</h3>
+                            <h3 class="text-base font-bold">External Placement</h3>
                         </div>
                         <p class="text-gray-600 text-sm leading-relaxed">
-                            Establish authority through external sources and E-E-A-T signals.
+                            Digital PR, listicles, and directory listings that AI systems prioritize.
                         </p>
                     </div>
 
@@ -467,10 +504,10 @@ onMounted(() => {
                             <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white font-bold">4</span>
                             </div>
-                            <h3 class="text-base font-bold">Distribute</h3>
+                            <h3 class="text-base font-bold">Community Signals</h3>
                         </div>
                         <p class="text-gray-600 text-sm leading-relaxed">
-                            Optimize for all AI models: GPT-4, Claude, Gemini, Perplexity.
+                            Build presence in specialized forums and platforms AI uses for validation.
                         </p>
                     </div>
 
@@ -479,10 +516,10 @@ onMounted(() => {
                             <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white font-bold">5</span>
                             </div>
-                            <h3 class="text-base font-bold">Optimize</h3>
+                            <h3 class="text-base font-bold">Track & Optimize</h3>
                         </div>
                         <p class="text-gray-600 text-sm leading-relaxed">
-                            Monitor visibility scores and continuously refine based on AI responses.
+                            Monitor AI mentions and refine strategy based on performance data.
                         </p>
                     </div>
                 </div>
@@ -531,7 +568,7 @@ onMounted(() => {
                             <NewspaperIcon class="h-10 w-10 text-purple-500 mb-3" />
                             <h4 class="text-lg font-bold mb-2">Digital PR</h4>
                             <p class="text-sm text-gray-600">
-                                Strategic media placements that build authority and drive qualified traffic
+                                Strategic media placements that provide authority signals AI systems trust
                             </p>
                         </div>
 
@@ -569,10 +606,7 @@ onMounted(() => {
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 class="text-4xl lg:text-5xl font-bold mb-6">
-                            Built for the 
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
-                                AI Era
-                            </span>
+                            Built for the <span class="text-blue-600">AI Era</span>
                         </h2>
                         <p class="text-xl text-gray-600 mb-8">
                             Search has evolved. AI models now mediate between users and information. 
@@ -581,8 +615,8 @@ onMounted(() => {
                         </p>
                         <div class="space-y-4">
                             <div class="flex items-start">
-                                <div class="flex-shrink-0 w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mr-4">
-                                    <SparklesIcon class="h-6 w-6 text-purple-400" />
+                                <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <SparklesIcon class="h-6 w-6 text-blue-600" />
                                 </div>
                                 <div>
                                     <h3 class="font-bold mb-1">Entity-First Architecture</h3>
@@ -592,8 +626,8 @@ onMounted(() => {
                                 </div>
                             </div>
                             <div class="flex items-start">
-                                <div class="flex-shrink-0 w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mr-4">
-                                    <ChartBarIcon class="h-6 w-6 text-blue-400" />
+                                <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <ChartBarIcon class="h-6 w-6 text-blue-600" />
                                 </div>
                                 <div>
                                     <h3 class="font-bold mb-1">Predictive Optimization</h3>
@@ -603,8 +637,8 @@ onMounted(() => {
                                 </div>
                             </div>
                             <div class="flex items-start">
-                                <div class="flex-shrink-0 w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mr-4">
-                                    <MagnifyingGlassIcon class="h-6 w-6 text-purple-400" />
+                                <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <MagnifyingGlassIcon class="h-6 w-6 text-blue-600" />
                                 </div>
                                 <div>
                                     <h3 class="font-bold mb-1">Multi-Model Coverage</h3>
@@ -616,36 +650,34 @@ onMounted(() => {
                         </div>
                     </div>
                     <div class="relative">
-                        <div class="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 blur-3xl"></div>
-                        <div class="relative bg-white/80 backdrop-blur-xl backdrop-saturate-150 rounded-3xl border border-gray-200/50 p-8">
-                            <div class="grid grid-cols-2 gap-4 mb-6">
-                                <div class="bg-black/50 rounded-lg p-4 border border-gray-800">
-                                    <div class="text-2xl font-bold text-purple-400 mb-1">92%</div>
-                                    <div class="text-xs text-gray-700">AI Citation Rate</div>
+                        <div class="bg-white rounded-2xl border border-gray-200 p-8 shadow-lg">
+                            <h3 class="text-lg font-bold mb-6 text-center text-gray-900">What We Track</h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-3">Monthly AI Mentions</h4>
+                                    <p class="text-sm text-gray-600 mb-2">How often your brand appears in AI responses</p>
+                                    <div class="text-2xl font-bold text-blue-600">2,847 mentions</div>
                                 </div>
-                                <div class="bg-black/50 rounded-lg p-4 border border-gray-800">
-                                    <div class="text-2xl font-bold text-blue-400 mb-1">4.8s</div>
-                                    <div class="text-xs text-gray-700">Avg. Load Time</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-3">Top Conversation Topics</h4>
+                                    <div class="space-y-2">
+                                        <div class="flex items-center justify-between text-sm">
+                                            <span class="text-gray-600">Product comparisons</span>
+                                            <span class="font-medium">34%</span>
+                                        </div>
+                                        <div class="flex items-center justify-between text-sm">
+                                            <span class="text-gray-600">Industry solutions</span>
+                                            <span class="font-medium">28%</span>
+                                        </div>
+                                        <div class="flex items-center justify-between text-sm">
+                                            <span class="text-gray-600">Best practices</span>
+                                            <span class="font-medium">22%</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="space-y-3">
-                                <div class="bg-black/50 rounded-lg p-3 border border-gray-800">
-                                    <div class="flex items-center justify-between mb-2">
-                                        <span class="text-sm text-gray-600">Content Structure Score</span>
-                                        <span class="text-sm font-bold">98/100</span>
-                                    </div>
-                                    <div class="w-full bg-gray-800 rounded-full h-2">
-                                        <div class="bg-gradient-to-r from-purple-500 to-blue-500 h-2 rounded-full" style="width: 98%"></div>
-                                    </div>
-                                </div>
-                                <div class="bg-black/50 rounded-lg p-3 border border-gray-800">
-                                    <div class="flex items-center justify-between mb-2">
-                                        <span class="text-sm text-gray-600">Schema Coverage</span>
-                                        <span class="text-sm font-bold">100%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-800 rounded-full h-2">
-                                        <div class="bg-gradient-to-r from-purple-500 to-blue-500 h-2 rounded-full" style="width: 100%"></div>
-                                    </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-3">Platform Coverage</h4>
+                                    <p class="text-sm text-gray-600">ChatGPT, Claude, Gemini, Perplexity</p>
                                 </div>
                             </div>
                         </div>
@@ -798,5 +830,15 @@ onMounted(() => {
 
 .hover-lift:hover {
     transform: translateY(-4px);
+}
+
+/* One-time pulse animation for visibility score */
+.animate-pulse-once {
+    animation: pulse-once 1s ease-out;
+}
+
+@keyframes pulse-once {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 </style>
