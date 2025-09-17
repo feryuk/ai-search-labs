@@ -330,7 +330,17 @@ onMounted(() => {
                         <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" @click.self="showModal = false">
                             <div class="bg-white rounded-2xl p-6 max-w-md w-full mx-4">
                                 <h3 class="text-xl font-bold mb-4">Complete Your Free AEO Audit Request</h3>
-                                <p class="text-sm text-gray-600 mb-4">We'll analyze {{ websiteUrl }} and send you a detailed report.</p>
+                                <p class="text-sm text-gray-600 mb-4 flex items-center gap-2">
+                                    <span>We'll analyze</span>
+                                    <span class="font-bold flex items-center gap-1">
+                                        <img :src="`https://www.google.com/s2/favicons?domain=${websiteUrl}&sz=32`" 
+                                             :alt="websiteUrl"
+                                             class="w-4 h-4"
+                                             @error="(e) => e.target.style.display = 'none'">
+                                        {{ websiteUrl }}
+                                    </span>
+                                    <span>and send you a detailed report.</span>
+                                </p>
                                 
                                 <div class="space-y-4">
                                     <div>
