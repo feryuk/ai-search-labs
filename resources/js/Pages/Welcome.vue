@@ -1,6 +1,6 @@
 <script setup>
 import { Head } from "@inertiajs/vue3";
-import { ref, onMounted, nextTick } from "vue";
+import { ref, onMounted, nextTick, watch } from "vue";
 import {
     ChevronRightIcon,
     SparklesIcon,
@@ -53,6 +53,7 @@ const showVisibilityScore = ref(false);
 
 // Chart reference for simple line chart
 const visibilityChart = ref(null);
+const chartInstance = ref(null);
 
 // Timeline hover state
 const hoveredMonth = ref(null);
@@ -63,7 +64,7 @@ const initializeChart = async () => {
 
     // Simple visibility growth chart
     if (visibilityChart.value) {
-        new Chart(visibilityChart.value, {
+        chartInstance.value = new Chart(visibilityChart.value, {
             type: "line",
             data: {
                 labels: [
@@ -85,10 +86,12 @@ const initializeChart = async () => {
                         tension: 0.4,
                         fill: true,
                         pointRadius: 4,
-                        pointHoverRadius: 6,
+                        pointHoverRadius: 8,
                         pointBackgroundColor: "white",
                         pointBorderColor: "rgb(59, 130, 246)",
                         pointBorderWidth: 2,
+                        pointHoverBackgroundColor: "rgb(59, 130, 246)",
+                        pointHoverBorderWidth: 3,
                     },
                 ],
             },
@@ -200,6 +203,55 @@ const handleSubmitContact = () => {
     contactForm.value = { name: "", email: "", phone: "" };
     alert("Thank you! We'll send your free AEO audit within 24 hours.");
 };
+
+// Watch for hoveredMonth changes and simulate mouse hover on chart
+watch(hoveredMonth, (newValue) => {
+    if (!chartInstance.value || !chartInstance.value.canvas) return;
+    
+    nextTick(() => {
+        if (!chartInstance.value) return;
+        
+        try {
+            const canvas = chartInstance.value.canvas;
+            const rect = canvas.getBoundingClientRect();
+            
+            if (newValue !== null && newValue >= 1 && newValue <= 6) {
+                // Get the data point position
+                const meta = chartInstance.value.getDatasetMeta(0);
+                const point = meta.data[newValue];
+                
+                if (point) {
+                    // Get the point's position
+                    const pointPos = point.getCenterPoint();
+                    
+                    // Create and dispatch a mousemove event at the point's position
+                    const evt = new MouseEvent('mousemove', {
+                        clientX: rect.left + pointPos.x,
+                        clientY: rect.top + pointPos.y,
+                        bubbles: true,
+                        cancelable: true,
+                        view: window
+                    });
+                    
+                    canvas.dispatchEvent(evt);
+                }
+            } else {
+                // Move mouse away to clear hover
+                const evt = new MouseEvent('mousemove', {
+                    clientX: rect.left - 100,
+                    clientY: rect.top - 100,
+                    bubbles: true,
+                    cancelable: true,
+                    view: window
+                });
+                
+                canvas.dispatchEvent(evt);
+            }
+        } catch (error) {
+            // Silently handle errors
+        }
+    });
+});
 
 onMounted(() => {
     setInterval(() => {
