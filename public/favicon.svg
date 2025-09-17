@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#000000"/>
+  
+  <!-- Gradient definitions -->
+  <defs>
+    <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e879f9;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#c084fc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- AI Sparkles Icon - Simplified -->
+  <g fill="url(#sparkleGradient)">
+    <!-- Large center sparkle - four pointed star -->
+    <path d="M16 6 L17 15 L16 16 L15 15 Z" fill="url(#sparkleGradient)"/>
+    <path d="M16 26 L15 17 L16 16 L17 17 Z" fill="url(#sparkleGradient)"/>
+    <path d="M6 16 L15 15 L16 16 L15 17 Z" fill="url(#sparkleGradient)"/>
+    <path d="M26 16 L17 17 L16 16 L17 15 Z" fill="url(#sparkleGradient)"/>
+    
+    <!-- Top right sparkle -->
+    <circle cx="23" cy="9" r="2" fill="url(#sparkleGradient)"/>
+    <path d="M23 7 L23 11 M21 9 L25 9" stroke="url(#sparkleGradient)" stroke-width="1" fill="url(#sparkleGradient)"/>
+    
+    <!-- Bottom left sparkle -->
+    <circle cx="9" cy="23" r="2" fill="url(#sparkleGradient)"/>
+    <path d="M9 21 L9 25 M7 23 L11 23" stroke="url(#sparkleGradient)" stroke-width="1" fill="url(#sparkleGradient)"/>
+  </g>
+</svg>
