@@ -51,6 +51,16 @@ const contactForm = ref({
 // Show visibility score after chat completes
 const showVisibilityScore = ref(false);
 
+// Dropdown menu states
+const activeDropdown = ref(null);
+
+const toggleDropdown = (menu, event) => {
+    if (event) {
+        event.stopPropagation();
+    }
+    activeDropdown.value = activeDropdown.value === menu ? null : menu;
+};
+
 // Chart reference for simple line chart
 const visibilityChart = ref(null);
 const chartInstance = ref(null);
@@ -283,6 +293,13 @@ onMounted(() => {
         showCursor.value = !showCursor.value;
     }, 500);
 
+    // Add click outside listener for dropdowns
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.relative')) {
+            activeDropdown.value = null;
+        }
+    });
+
     // Start chat simulation after delay
     setTimeout(async () => {
         await typeMessage(userQuery, true);
@@ -363,20 +380,80 @@ onMounted(() => {
                     </div>
                     <!-- Navigation Links -->
                     <div class="hidden md:flex items-center space-x-8">
+                        <!-- Services Dropdown -->
+                        <div class="relative">
+                            <button
+                                @click="toggleDropdown('services', $event)"
+                                class="flex items-center text-gray-900 font-medium hover:text-blue-600 transition"
+                            >
+                                Services
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div
+                                v-if="activeDropdown === 'services'"
+                                @mousedown.prevent
+                                class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50"
+                            >
+                                <a href="#onsite" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                                    <div class="font-medium">On-Site Optimisation</div>
+                                    <div class="text-xs text-gray-500">AI-friendly website structure</div>
+                                </a>
+                                <a href="#content" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                                    <div class="font-medium">Content Creation</div>
+                                    <div class="text-xs text-gray-500">Authority content that AI trusts</div>
+                                </a>
+                                <a href="#pr" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                                    <div class="font-medium">Digital PR</div>
+                                    <div class="text-xs text-gray-500">High-authority media coverage</div>
+                                </a>
+                                <a href="#listicles" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                                    <div class="font-medium">Strategic Listicles</div>
+                                    <div class="text-xs text-gray-500">Top rankings in comparisons</div>
+                                </a>
+                                <a href="#community" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                                    <div class="font-medium">Community Signals</div>
+                                    <div class="text-xs text-gray-500">Organic recommendations</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Solutions Dropdown -->
+                        <div class="relative">
+                            <button
+                                @click="toggleDropdown('solutions', $event)"
+                                class="flex items-center text-gray-900 font-medium hover:text-blue-600 transition"
+                            >
+                                Solutions
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div
+                                v-if="activeDropdown === 'solutions'"
+                                @mousedown.prevent
+                                class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50"
+                            >
+                                <a href="#enterprise" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                                    <div class="font-medium">Enterprise</div>
+                                    <div class="text-xs text-gray-500">Full-scale AI optimization</div>
+                                </a>
+                                <a href="#startup" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                                    <div class="font-medium">Startups</div>
+                                    <div class="text-xs text-gray-500">Build AI presence from day one</div>
+                                </a>
+                                <a href="#reseller" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                                    <div class="font-medium">White-label Reseller</div>
+                                    <div class="text-xs text-gray-500">Partner with us</div>
+                                </a>
+                            </div>
+                        </div>
+
                         <a
-                            href="#product"
+                            href="#process"
                             class="text-gray-900 font-medium hover:text-blue-600 transition"
-                            >Product</a
-                        >
-                        <a
-                            href="#solutions"
-                            class="text-gray-900 font-medium hover:text-blue-600 transition"
-                            >Solutions</a
-                        >
-                        <a
-                            href="#case-studies"
-                            class="text-gray-900 font-medium hover:text-blue-600 transition"
-                            >Case studies</a
+                            >Process</a
                         >
                         <a
                             href="#about"
@@ -2204,21 +2281,143 @@ onMounted(() => {
         </section>
 
         <!-- Footer -->
-        <footer class="border-t border-gray-200 py-12 px-6 bg-white">
-            <div class="max-w-7xl mx-auto">
-                <div
-                    class="flex flex-col md:flex-row items-center justify-between"
-                >
-                    <div class="flex items-center space-x-2 mb-4 md:mb-0">
-                        <SparklesIcon class="h-6 w-6 text-blue-600" />
-                        <span class="font-bold">AI Search Labs</span>
-                        <span class="text-sm text-gray-500"
-                            >• AI Search Optimisation Agency</span
-                        >
+        <footer class="bg-gray-900 text-gray-300">
+            <!-- Main Footer Content -->
+            <div class="border-t border-gray-800">
+                <div class="max-w-7xl mx-auto px-6 py-16">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <!-- Company Info -->
+                        <div class="md:col-span-2">
+                            <div class="flex items-center space-x-2 mb-4">
+                                <SparklesIcon class="h-8 w-8 text-blue-500" />
+                                <div>
+                                    <div class="font-bold text-white text-lg">AI Search Labs Ltd</div>
+                                    <div class="text-xs text-gray-400">AI Search Optimisation Agency</div>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-6 max-w-md">
+                                Pioneering Answer Engine Optimization to ensure your brand is the 
+                                preferred choice when AI systems make recommendations.
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center">
+                                    <svg class="h-4 w-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    <a href="mailto:hello@aisearchlabs.com" class="text-gray-400 hover:text-white transition">
+                                        hello@aisearchlabs.com
+                                    </a>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="h-4 w-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                    <a href="tel:+442012345678" class="text-gray-400 hover:text-white transition">
+                                        +44 20 1234 5678
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Services -->
+                        <div>
+                            <h3 class="font-semibold text-white mb-4">Services</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li>
+                                    <a href="#" class="text-gray-400 hover:text-white transition">
+                                        On-Site Optimisation
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-400 hover:text-white transition">
+                                        Content Creation
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-400 hover:text-white transition">
+                                        Digital PR
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-400 hover:text-white transition">
+                                        Strategic Listicles
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-400 hover:text-white transition">
+                                        Community Signals
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Company -->
+                        <div>
+                            <h3 class="font-semibold text-white mb-4">Company</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li>
+                                    <a href="#about" class="text-gray-400 hover:text-white transition">
+                                        About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#process" class="text-gray-400 hover:text-white transition">
+                                        Our Process
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#reseller" class="text-gray-400 hover:text-white transition">
+                                        White-label Reseller
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#contact" class="text-gray-400 hover:text-white transition">
+                                        Contact
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/privacy" class="text-gray-400 hover:text-white transition">
+                                        Privacy Policy
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/terms" class="text-gray-400 hover:text-white transition">
+                                        Terms & Conditions
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="text-sm text-gray-700">
-                        &copy; 2025 AI Search Labs. Pioneering Answer Engine
-                        Optimization.
+                </div>
+            </div>
+
+            <!-- Legal Footer -->
+            <div class="border-t border-gray-800 py-6 px-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                        <div class="text-xs text-gray-500 text-center md:text-left">
+                            <p>&copy; 2025 AI Search Labs Ltd. All rights reserved.</p>
+                            <p class="mt-1">
+                                Company number 16719803 registered in England and Wales.
+                            </p>
+                            <p class="mt-1">
+                                Registered office: Windrush House, Windrush Park Road, Witney, England, OX29 7DX
+                            </p>
+                        </div>
+                        <div class="flex space-x-6">
+                            <!-- LinkedIn -->
+                            <a href="#" class="text-gray-500 hover:text-white transition">
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </a>
+                            <!-- Twitter/X -->
+                            <a href="#" class="text-gray-500 hover:text-white transition">
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
