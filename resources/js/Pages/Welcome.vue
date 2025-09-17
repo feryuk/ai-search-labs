@@ -528,7 +528,8 @@ onMounted(() => {
                             Perplexity.
                         </p>
                         <div class="flex items-center gap-4">
-                            <button
+                            <a
+                                href="#process"
                                 class="inline-flex items-center px-6 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition"
                             >
                                 <svg
@@ -544,13 +545,15 @@ onMounted(() => {
                                         d="M15 10l-4 4m0 0l-4-4m4 4V3"
                                     ></path>
                                 </svg>
-                                Get AEO Audit
-                            </button>
-                            <button
-                                class="px-6 py-3 bg-white border-2 border-gray-200 text-black rounded-full font-medium hover:bg-gray-50 transition"
+                                View 6 Months Plan
+                            </a>
+                            <a
+                                href="https://calendly.com/aisearchlabs/consultation"
+                                target="_blank"
+                                class="px-6 py-3 bg-white border-2 border-gray-200 text-black rounded-full font-medium hover:bg-gray-50 transition inline-block"
                             >
-                                View Case Studies
-                            </button>
+                                Request Service
+                            </a>
                         </div>
                     </div>
                     <div class="relative">
