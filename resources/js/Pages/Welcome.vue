@@ -305,10 +305,10 @@ onMounted(() => {
 
     <div class="min-h-screen bg-white text-gray-900">
         <!-- Top banner -->
-        <div class="bg-gray-100 py-3 text-center relative overflow-hidden">
+        <div class="bg-black py-3 text-center relative overflow-hidden">
             <div class="relative">
                 <p
-                    class="text-sm text-gray-600 flex items-center justify-center gap-2"
+                    class="text-sm text-gray-300 flex items-center justify-center gap-2"
                 >
                     <span>Get your brand mentioned by</span>
                     <span class="relative inline-flex items-center">
@@ -330,7 +330,7 @@ onMounted(() => {
                                     :alt="platform.name"
                                     class="w-4 h-4"
                                 />
-                                <span class="font-semibold">{{
+                                <span class="font-semibold text-white">{{
                                     platform.name
                                 }}</span>
                             </div>
@@ -352,9 +352,14 @@ onMounted(() => {
                         >
                             <SparklesIcon class="h-6 w-6 text-white" />
                         </div>
-                        <span class="text-xl font-semibold text-black"
-                            >AI Search Labs</span
-                        >
+                        <div class="flex flex-col">
+                            <span class="text-xl font-semibold text-black"
+                                >AI Search Labs</span
+                            >
+                            <span class="text-xs text-gray-500"
+                                >AI Search Optimisation Agency</span
+                            >
+                        </div>
                     </div>
                     <!-- Navigation Links -->
                     <div class="hidden md:flex items-center space-x-8">
@@ -419,12 +424,6 @@ onMounted(() => {
             <div class="relative max-w-7xl mx-auto">
                 <div class="grid lg:grid-cols-2 gap-16 items-start">
                     <div class="pt-8">
-                        <div
-                            class="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6"
-                        >
-                            <SparklesIcon class="h-4 w-4 mr-2" />
-                            AI Search Optimization Agency
-                        </div>
                         <h1
                             class="text-6xl lg:text-7xl font-bold mb-8 leading-tight"
                         >
@@ -2128,6 +2127,11 @@ onMounted(() => {
                     <h3 class="text-xl font-bold mb-6 text-gray-900">
                         Example of Expected Outcomes
                     </h3>
+                    <p class="text-sm italic text-gray-500 mb-6">
+                        All metrics, timelines, and growth projections shown are illustrative examples only. 
+                        Actual outcomes will vary depending on industry, competition, and implementation. These figures do not constitute 
+                        a guarantee or promise of specific results for any engagement.
+                    </p>
                     <div class="grid md:grid-cols-4 gap-6">
                         <div class="text-center">
                             <div class="text-3xl font-bold mb-2 text-blue-600">
@@ -2161,32 +2165,6 @@ onMounted(() => {
                                 Major AI platforms
                             </p>
                         </div>
-                    </div>
-                </div>
-                <div class="flex items-start">
-                    <div
-                        class="w-2 h-2 bg-blue-600 rounded-full mt-1.5 mr-3 flex-shrink-0"
-                    ></div>
-                    <div>
-                        <p class="text-sm font-medium text-gray-900">
-                            Multi-Platform Coverage
-                        </p>
-                        <p class="text-xs text-gray-500">
-                            Optimize for all AI models
-                        </p>
-                    </div>
-                </div>
-                <div class="flex items-start">
-                    <div
-                        class="w-2 h-2 bg-blue-600 rounded-full mt-1.5 mr-3 flex-shrink-0"
-                    ></div>
-                    <div>
-                        <p class="text-sm font-medium text-gray-900">
-                            Performance Refinement
-                        </p>
-                        <p class="text-xs text-gray-500">
-                            Data-driven optimization
-                        </p>
                     </div>
                 </div>
             </div>
@@ -2235,7 +2213,7 @@ onMounted(() => {
                         <SparklesIcon class="h-6 w-6 text-blue-600" />
                         <span class="font-bold">AI Search Labs</span>
                         <span class="text-sm text-gray-500"
-                            >• The AEO Experts</span
+                            >• AI Search Optimisation Agency</span
                         >
                     </div>
                     <div class="text-sm text-gray-700">
