@@ -236,16 +236,25 @@ watch(hoveredMonth, (newValue) => {
                     canvas.dispatchEvent(evt);
                 }
             } else {
-                // Move mouse away to clear hover
-                const evt = new MouseEvent('mousemove', {
-                    clientX: rect.left - 100,
-                    clientY: rect.top - 100,
+                // Clear hover by dispatching mouseout event
+                const mouseOutEvent = new MouseEvent('mouseout', {
                     bubbles: true,
                     cancelable: true,
                     view: window
                 });
                 
-                canvas.dispatchEvent(evt);
+                canvas.dispatchEvent(mouseOutEvent);
+                
+                // Also move mouse away to ensure tooltip is hidden
+                const mouseMoveEvent = new MouseEvent('mousemove', {
+                    clientX: 0,
+                    clientY: 0,
+                    bubbles: true,
+                    cancelable: true,
+                    view: window
+                });
+                
+                canvas.dispatchEvent(mouseMoveEvent);
             }
         } catch (error) {
             // Silently handle errors
