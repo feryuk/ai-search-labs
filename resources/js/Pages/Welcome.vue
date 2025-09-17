@@ -27,6 +27,15 @@ const isTyping = ref(false);
 const showCursor = ref(true);
 const showSources = ref(false);
 
+// Audit form state
+const websiteUrl = ref('');
+const showModal = ref(false);
+const contactForm = ref({
+    name: '',
+    email: '',
+    phone: ''
+});
+
 // AI platforms for animated banner
 const aiPlatforms = [
     { name: 'ChatGPT', domain: 'openai.com' },
@@ -75,6 +84,22 @@ const typeMessage = async (message, isUser = false) => {
     isTyping.value = false;
     chatMessages.value.push({ text: message, isUser });
     currentTyping.value = '';
+};
+
+const handleSubmitWebsite = () => {
+    if (websiteUrl.value.trim()) {
+        showModal.value = true;
+    }
+};
+
+const handleSubmitContact = () => {
+    // Handle form submission
+    console.log('Form submitted:', { website: websiteUrl.value, ...contactForm.value });
+    showModal.value = false;
+    // Reset form
+    websiteUrl.value = '';
+    contactForm.value = { name: '', email: '', phone: '' };
+    alert('Thank you! We\'ll send your free AEO audit within 24 hours.');
 };
 
 onMounted(() => {
@@ -267,7 +292,7 @@ onMounted(() => {
                             
                             <!-- Bottom Stats -->
                             <div class="bg-white border-t border-gray-200 px-4 py-3">
-                                <div class="flex items-center justify-between text-xs">
+                                <div class="flex items-center justify-between text-xs mb-3">
                                     <div class="flex items-center gap-4">
                                         <span class="text-gray-500">Visibility Score:</span>
                                         <span class="font-bold text-green-600">89% for "HubSpot"</span>
@@ -276,6 +301,82 @@ onMounted(() => {
                                         <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
                                         <span class="text-gray-500">#1 mentioned brand</span>
                                     </div>
+                                </div>
+                                
+                                <!-- Website Audit Input -->
+                                <div class="border-t border-gray-100 pt-3">
+                                    <p class="text-xs text-gray-600 mb-2">I want a free audit for my website's AI visibility and opportunities.</p>
+                                    <div class="flex gap-2">
+                                        <input 
+                                            v-model="websiteUrl"
+                                            type="url"
+                                            placeholder="Enter your website URL"
+                                            class="flex-1 px-3 py-1.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500"
+                                            @keyup.enter="handleSubmitWebsite"
+                                        />
+                                        <button 
+                                            v-if="websiteUrl.trim()"
+                                            @click="handleSubmitWebsite"
+                                            class="px-4 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors"
+                                        >
+                                            Next Step →
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Modal -->
+                        <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" @click.self="showModal = false">
+                            <div class="bg-white rounded-2xl p-6 max-w-md w-full mx-4">
+                                <h3 class="text-xl font-bold mb-4">Complete Your Free AEO Audit Request</h3>
+                                <p class="text-sm text-gray-600 mb-4">We'll analyze {{ websiteUrl }} and send you a detailed report.</p>
+                                
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                        <input 
+                                            v-model="contactForm.name"
+                                            type="text"
+                                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500"
+                                            placeholder="John Doe"
+                                        />
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                        <input 
+                                            v-model="contactForm.email"
+                                            type="email"
+                                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500"
+                                            placeholder="john@company.com"
+                                        />
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                        <input 
+                                            v-model="contactForm.phone"
+                                            type="tel"
+                                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500"
+                                            placeholder="+1 (555) 123-4567"
+                                        />
+                                    </div>
+                                </div>
+                                
+                                <div class="flex gap-3 mt-6">
+                                    <button 
+                                        @click="showModal = false"
+                                        class="flex-1 px-4 py-2 border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button 
+                                        @click="handleSubmitContact"
+                                        class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                                    >
+                                        Get Free Audit
+                                    </button>
                                 </div>
                             </div>
                         </div>
