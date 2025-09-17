@@ -53,6 +53,7 @@ const showVisibilityScore = ref(false);
 
 // Dropdown menu states
 const activeDropdown = ref(null);
+const dropdownRefs = ref({});
 
 const toggleDropdown = (menu, event) => {
     if (event) {
@@ -295,7 +296,11 @@ onMounted(() => {
 
     // Add click outside listener for dropdowns
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.relative')) {
+        // Check if click is outside all dropdown areas
+        const isDropdownButton = e.target.closest('[data-dropdown-toggle]');
+        const isDropdownContent = e.target.closest('[data-dropdown-content]');
+        
+        if (!isDropdownButton && !isDropdownContent) {
             activeDropdown.value = null;
         }
     });
@@ -384,6 +389,7 @@ onMounted(() => {
                         <div class="relative">
                             <button
                                 @click="toggleDropdown('services', $event)"
+                                data-dropdown-toggle="services"
                                 class="flex items-center text-gray-900 font-medium hover:text-blue-600 transition"
                             >
                                 Services
@@ -394,28 +400,84 @@ onMounted(() => {
                             <div
                                 v-if="activeDropdown === 'services'"
                                 @mousedown.prevent
-                                class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50"
+                                data-dropdown-content="services"
+                                class="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-100 p-4 z-50"
                             >
-                                <a href="#onsite" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
-                                    <div class="font-medium">On-Site Optimisation</div>
-                                    <div class="text-xs text-gray-500">AI-friendly website structure</div>
-                                </a>
-                                <a href="#content" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
-                                    <div class="font-medium">Content Creation</div>
-                                    <div class="text-xs text-gray-500">Authority content that AI trusts</div>
-                                </a>
-                                <a href="#pr" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
-                                    <div class="font-medium">Digital PR</div>
-                                    <div class="text-xs text-gray-500">High-authority media coverage</div>
-                                </a>
-                                <a href="#listicles" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
-                                    <div class="font-medium">Strategic Listicles</div>
-                                    <div class="text-xs text-gray-500">Top rankings in comparisons</div>
-                                </a>
-                                <a href="#community" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
-                                    <div class="font-medium">Community Signals</div>
-                                    <div class="text-xs text-gray-500">Organic recommendations</div>
-                                </a>
+                                <!-- 6-Month Plan Header -->
+                                <div class="pb-3 mb-3 border-b-2 border-gray-100">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <div class="px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-xs font-bold uppercase tracking-wide">
+                                            6-MONTH PLAN
+                                        </div>
+                                        <span class="text-xs text-gray-500">All Included</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600">All services below are included in our comprehensive optimization plan</p>
+                                </div>
+                                
+                                <!-- Services Container with Border -->
+                                <div class="space-y-1">
+                                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wide px-2 mb-2">Included Services:</div>
+                                    
+                                    <a href="#onsite" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition">
+                                        <div class="flex items-start gap-2">
+                                            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                            <div>
+                                                <div class="font-medium">On-Site Optimisation</div>
+                                                <div class="text-xs text-gray-500">AI-friendly website structure</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="#content" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition">
+                                        <div class="flex items-start gap-2">
+                                            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                            <div>
+                                                <div class="font-medium">Content Creation</div>
+                                                <div class="text-xs text-gray-500">Authority content that AI trusts</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="#pr" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition">
+                                        <div class="flex items-start gap-2">
+                                            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                            <div>
+                                                <div class="font-medium">Digital PR</div>
+                                                <div class="text-xs text-gray-500">High-authority media coverage</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="#listicles" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition">
+                                        <div class="flex items-start gap-2">
+                                            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                            <div>
+                                                <div class="font-medium">Strategic Listicles</div>
+                                                <div class="text-xs text-gray-500">Top rankings in comparisons</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="#community" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded transition">
+                                        <div class="flex items-start gap-2">
+                                            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                            <div>
+                                                <div class="font-medium">Community Signals</div>
+                                                <div class="text-xs text-gray-500">Organic recommendations</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
@@ -423,6 +485,7 @@ onMounted(() => {
                         <div class="relative">
                             <button
                                 @click="toggleDropdown('solutions', $event)"
+                                data-dropdown-toggle="solutions"
                                 class="flex items-center text-gray-900 font-medium hover:text-blue-600 transition"
                             >
                                 Solutions
@@ -433,6 +496,7 @@ onMounted(() => {
                             <div
                                 v-if="activeDropdown === 'solutions'"
                                 @mousedown.prevent
+                                data-dropdown-content="solutions"
                                 class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50"
                             >
                                 <a href="#enterprise" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
@@ -2251,34 +2315,122 @@ onMounted(() => {
         </section>
 
         <!-- CTA Section -->
-        <section id="contact" class="py-20 px-6 border-t border-gray-200">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
-                    Ready to Optimize for
-                    <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400"
-                    >
-                        AI-First Search?
-                    </span>
-                </h2>
-                <p class="text-xl text-gray-600 mb-8">
-                    Let's discuss how we can position your brand at the
-                    forefront of AI-powered discovery.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a
-                        href="mailto:contact@aisearchlabs.com"
-                        class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition"
-                    >
-                        Schedule a Consultation
-                        <ChevronRightIcon class="ml-2 h-5 w-5" />
-                    </a>
-                    <a
-                        href="#services"
-                        class="inline-flex items-center justify-center px-8 py-4 border border-gray-700 rounded-lg font-semibold hover:border-gray-400 hover:bg-white/50 transition"
-                    >
-                        View Services
-                    </a>
+        <section id="contact" class="py-24 px-6 bg-gradient-to-b from-white to-gray-50 border-t border-gray-100">
+            <div class="max-w-7xl mx-auto">
+                <div class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+                    <div class="grid md:grid-cols-2 items-stretch">
+                        <!-- Left Content -->
+                        <div class="p-12 lg:p-16 flex flex-col justify-center">
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-4 w-fit">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                                <span>Start Your AI Journey</span>
+                            </div>
+                            
+                            <h2 class="text-4xl lg:text-5xl font-bold mb-4 text-gray-900">
+                                Your Competition is Already
+                                <span class="block text-blue-600 mt-2">Optimizing for AI</span>
+                            </h2>
+                            
+                            <p class="text-lg text-gray-600 mb-8">
+                                Don't let competitors dominate AI recommendations. Start your 6-month transformation to become the #1 AI-recommended brand in your industry.
+                            </p>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="text-gray-700">89% average visibility increase</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="text-gray-700">Results visible within 30 days</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="text-gray-700">Full-service implementation</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a
+                                    href="https://calendly.com/aisearchlabs/consultation"
+                                    target="_blank"
+                                    class="inline-flex items-center justify-center px-6 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition"
+                                >
+                                    Book Strategy Call
+                                    <ChevronRightIcon class="ml-2 h-5 w-5" />
+                                </a>
+                                <a
+                                    href="#process"
+                                    class="inline-flex items-center justify-center px-6 py-3 bg-white border-2 border-gray-200 text-black rounded-full font-medium hover:bg-gray-50 transition"
+                                >
+                                    View 6-Month Plan
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Visual -->
+                        <div class="relative bg-gradient-to-br from-blue-50 to-indigo-100 p-12 lg:p-16 flex items-center justify-center">
+                            <div class="relative">
+                                <!-- Floating metric cards -->
+                                <div class="absolute -top-8 -left-8 bg-white rounded-lg shadow-lg p-4 transform rotate-3 hover:rotate-0 transition-transform">
+                                    <div class="text-3xl font-bold text-blue-600">94%</div>
+                                    <div class="text-xs text-gray-500">AI Visibility Score</div>
+                                </div>
+                                
+                                <div class="absolute -bottom-8 -right-8 bg-white rounded-lg shadow-lg p-4 transform -rotate-3 hover:rotate-0 transition-transform">
+                                    <div class="text-3xl font-bold text-green-600">3x</div>
+                                    <div class="text-xs text-gray-500">Lead Growth</div>
+                                </div>
+                                
+                                <!-- Central graphic -->
+                                <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                                    <div class="space-y-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                                                <SparklesIcon class="w-6 h-6 text-blue-600" />
+                                            </div>
+                                            <div>
+                                                <div class="font-semibold text-gray-900">AI Search Labs</div>
+                                                <div class="text-xs text-gray-500">Your Success Partner</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="h-px bg-gray-200"></div>
+                                        
+                                        <div class="space-y-3">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm text-gray-600">ChatGPT Ranking</span>
+                                                <span class="text-sm font-semibold text-green-600">#1</span>
+                                            </div>
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm text-gray-600">Claude Position</span>
+                                                <span class="text-sm font-semibold text-green-600">Top 3</span>
+                                            </div>
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm text-gray-600">Perplexity Score</span>
+                                                <span class="text-sm font-semibold text-green-600">95%</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="pt-4 border-t border-gray-100">
+                                            <div class="flex items-center gap-2 text-xs text-gray-500">
+                                                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                                <span>Live client results</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
